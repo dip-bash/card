@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minimalist Persona</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
+            },
+          },
+        },
+      }
+    </script>
+    <!-- Marked (Markdown Parser) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      .premium-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Crect fill='%23ffffff' width='2000' height='1500'/%3E%3Cdefs%3E%3Crect stroke='%23ffffff' stroke-width='.5' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='3' height='3' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cuse fill='%23fcfcfc' href='%23s' y='2'/%3E%3Cuse fill='%23fcfcfc' href='%23s' x='1' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s' x='2' y='2'/%3E%3Cuse fill='%23fafafa' href='%23s'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='2'/%3E%3Cuse fill='%23f7f7f7' href='%23s' x='1' y='1'/%3E%3C/pattern%3E%3Cpattern id='b' width='7' height='11' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s'/%3E%3Cuse href='%23s' y='5' /%3E%3Cuse href='%23s' x='1' y='10'/%3E%3Cuse href='%23s' x='2' y='1'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='8'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse fill='%23f5f5f5' href='%23s' x='5' y='2'/%3E%3Cuse fill='%23f5f5f5' href='%23s' x='5' y='6'/%3E%3Cuse fill='%23f5f5f5' href='%23s' x='6' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='h' width='5' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23f5f5f5'%3E%3Cuse href='%23s' y='5'/%3E%3Cuse href='%23s' y='8'/%3E%3Cuse href='%23s' x='1' y='1'/%3E%3Cuse href='%23s' x='1' y='9'/%3E%3Cuse href='%23s' x='1' y='12'/%3E%3Cuse href='%23s' x='2'/%3E%3Cuse href='%23s' x='2' y='4'/%3E%3Cuse href='%23s' x='3' y='2'/%3E%3Cuse href='%23s' x='3' y='6'/%3E%3Cuse href='%23s' x='3' y='11'/%3E%3Cuse href='%23s' x='4' y='3'/%3E%3Cuse href='%23s' x='4' y='7'/%3E%3Cuse href='%23s' x='4' y='10'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='17' height='13' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23f2f2f2'%3E%3Cuse href='%23s' y='11'/%3E%3Cuse href='%23s' x='2' y='9'/%3E%3Cuse href='%23s' x='5' y='12'/%3E%3Cuse href='%23s' x='9' y='4'/%3E%3Cuse href='%23s' x='12' y='1'/%3E%3Cuse href='%23s' x='16' y='6'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='19' height='17' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23ffffff'%3E%3Cuse href='%23s' y='9'/%3E%3Cuse href='%23s' x='16' y='5'/%3E%3Cuse href='%23s' x='14' y='2'/%3E%3Cuse href='%23s' x='11' y='11'/%3E%3Cuse href='%23s' x='6' y='14'/%3E%3C/g%3E%3Cg fill='%23efefef'%3E%3Cuse href='%23s' x='3' y='13'/%3E%3Cuse href='%23s' x='9' y='7'/%3E%3Cuse href='%23s' x='13' y='10'/%3E%3Cuse href='%23s' x='15' y='4'/%3E%3Cuse href='%23s' x='18' y='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='53' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='2' y='5'/%3E%3Cuse href='%23s' x='16' y='38'/%3E%3Cuse href='%23s' x='46' y='42'/%3E%3Cuse href='%23s' x='29' y='20'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='59' height='71' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='33' y='13'/%3E%3Cuse href='%23s' x='27' y='54'/%3E%3Cuse href='%23s' x='55' y='55'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='g' width='139' height='97' patternUnits='userSpaceOnUse' patternTransform='rotate(45 1000 750) scale(16.9) translate(-940.83 -705.62)'%3E%3Cg fill='%23F60'%3E%3Cuse href='%23s' x='11' y='8'/%3E%3Cuse href='%23s' x='51' y='13'/%3E%3Cuse href='%23s' x='17' y='73'/%3E%3Cuse href='%23s' x='99' y='57'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23b)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23h)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23c)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23d)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23e)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23f)' width='100%25' height='100%25'/%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.03;
+        z-index: 50;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        filter: contrast(120%) brightness(100%);
+      }
+
+      body {
+        background-color: #F7F6F4;
+        color: #333333;
+        cursor: auto; /* Show default cursor */
+      }
+
+      /* Custom Cursor */
+      .custom-cursor {
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        background-color: black;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+        mix-blend-mode: difference;
+      }
+
+      .custom-cursor.hover {
+        width: 64px;
+        height: 64px;
+        background-color: white;
+      }
+
+      /* Mouse Follow Glow */
+      .mouse-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(251, 191, 36, 0.08) 0%, rgba(251, 191, 36, 0) 70%);
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        border-radius: 50%;
+      }
+      
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stagger-1 { animation-delay: 0.1s; }
+      .stagger-2 { animation-delay: 0.2s; }
+      .stagger-3 { animation-delay: 0.3s; }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      /* Premium Hover Effects */
+      .social-link {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        z-index: 10;
+      }
+      
+      .social-link:hover {
+        background-color: white;
+        box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        border-color: #222;
+        color: #000;
+      }
+
+      .profile-card {
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      
+      .profile-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .profile-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .profile-card img {
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @keyframes backgroundDrift {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 1% 1%; }
+        100% { background-position: 0% 0%; }
+      }
+
+      .premium-pattern {
+        animation: backgroundDrift 60s ease-in-out infinite;
+      }
+
+      .markdown-body h1 { font-family: "Playfair Display", serif; font-size: 2.25rem; margin-top: 2rem; margin-bottom: 1rem; }
+      .markdown-body p { margin-bottom: 1rem; line-height: 1.6; }
+
+      @media (max-width: 768px) {
+        .custom-cursor, .mouse-glow { display: none; }
+        body { cursor: auto; }
+      }
+    </style>
+  </head>
+  <body class="premium-pattern min-h-screen">
+    <div class="grain"></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="mouse-glow" id="mouse-glow"></div>
+
+    <!-- Share Button -->
+    <button id="share-btn" class="fixed top-8 right-8 z-[60] w-12 h-12 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:text-black hover:border-black transition-all hover:scale-110 active:scale-95 shadow-sm" title="Share Page">
+      <i data-lucide="share-2" style="width: 20px; height: 20px;"></i>
+    </button>
+
+    <!-- QR Modal -->
+    <div id="qr-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300">
+      <div id="modal-overlay" class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+      <div class="relative bg-white p-8 rounded-[2.5rem] shadow-2xl max-w-xs w-full flex flex-col items-center transform scale-90 transition-transform duration-300">
+        <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-black">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+        <h3 class="font-serif text-2xl mb-2">Share Profile</h3>
+        <p class="text-xs text-gray-400 mb-6 uppercase tracking-widest">Scan to view on mobile</p>
+        <div class="bg-gray-50 p-4 rounded-3xl border border-gray-100 mb-6">
+          <img id="qr-image" src="" alt="QR Code" class="w-48 h-48">
+        </div>
+        <p id="current-url" class="text-[10px] text-gray-400 font-mono break-all line-clamp-1 opacity-50"></p>
+      </div>
+    </div>
+    
+    <main id="app" class="relative min-h-screen flex flex-col items-center justify-center p-6 overflow-hidden opacity-0">
+      <div class="z-10 flex flex-col items-center text-center max-w-xl py-24">
+        
+        <!-- Profile Picture -->
+        <div class="relative mb-12">
+          <div class="w-48 h-48 rounded-[2.5rem] bg-gray-200 overflow-hidden ring-1 ring-gray-200 p-1">
+            <div id="avatar-container" class="w-full h-full rounded-[2.2rem] bg-gray-100 overflow-hidden relative">
+              <!-- Avatar injected here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Name -->
+        <h1 id="user-name" class="font-serif text-6xl md:text-8xl leading-[0.9] tracking-tighter mb-8 whitespace-pre-line text-[#222]">
+          <!-- Name injected here -->
+        </h1>
+
+        <!-- Details -->
+        <p id="user-details" class="font-sans text-sm md:text-base text-gray-500 uppercase tracking-widest max-w-[300px] leading-relaxed mb-12">
+          <!-- Details injected here -->
+        </p>
+
+        <!-- Social Links -->
+        <div id="social-links" class="flex gap-4">
+          <!-- Socials injected here -->
+        </div>
+
+        <!-- Markdown Content -->
+        <div id="markdown-content" class="mt-24 text-left w-full prose prose-gray prose-headings:font-serif prose-headings:font-normal">
+          <div class="h-[1px] w-full bg-gray-200 mb-12"></div>
+          <div id="bio-content" class="markdown-body">
+            <!-- Bio injected here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
