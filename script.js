@@ -30,6 +30,11 @@ async function init() {
     // Set Name & Details
     userName.textContent = data.name || 'USER NAME';
     userDetails.textContent = data.details || '';
+    
+    // Set document title
+    if (data.name) {
+      document.title = data.name.replace(/\n/g, ' ');
+    }
 
     // Add staggering classes for animation
     document.querySelector('.relative.mb-12').classList.add('fade-in', 'stagger-1');
