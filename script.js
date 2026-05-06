@@ -48,8 +48,8 @@ async function init() {
       document.getElementById('markdown-content').style.display = 'none';
     }
 
-    // Resolve Avatar
-    await resolveAvatar(data.github_username, data.name);
+    // Resolve Avatar (Non-blocking)
+    resolveAvatar(data.github_username, data.name).catch(console.error);
 
     // Render Socials
     if (data.socials && Array.isArray(data.socials)) {
@@ -288,20 +288,28 @@ function parseYAML(yaml) {
 async function resolveAvatar(githubUsername, name) {
   const container = document.getElementById('avatar-container');
   
-  // 1. Local check
+  // 1. Local check (Parallel)
   const extensions = ['jpg', 'png', 'jpeg'];
-  for (const ext of extensions) {
+  const checkImage = async (ext) => {
     try {
       const res = await fetch(`/profile.${ext}`, { method: 'HEAD' });
       if (res.ok && res.headers.get('content-type')?.startsWith('image/')) {
-        const img = document.createElement('img');
-        img.src = `/profile.${ext}`;
-        img.alt = name;
-        img.className = "w-full h-full object-cover";
-        container.appendChild(img);
-        return;
+        return `/profile.${ext}`;
       }
     } catch (e) {}
+    return null;
+  };
+
+  const localResults = await Promise.all(extensions.map(checkImage));
+  const foundLocalPath = localResults.find(path => path !== null);
+
+  if (foundLocalPath) {
+    const img = document.createElement('img');
+    img.src = foundLocalPath;
+    img.alt = name;
+    img.className = "w-full h-full object-cover fade-in";
+    container.appendChild(img);
+    return;
   }
 
   // 2. GitHub Check
@@ -313,7 +321,7 @@ async function resolveAvatar(githubUsername, name) {
         const img = document.createElement('img');
         img.src = data.avatar_url;
         img.alt = name;
-        img.className = "w-full h-full object-cover";
+        img.className = "w-full h-full object-cover fade-in";
         container.appendChild(img);
         return;
       }
@@ -322,7 +330,7 @@ async function resolveAvatar(githubUsername, name) {
 
   // 3. Fallback circle
   container.innerHTML = `
-    <div class="w-full h-full flex items-center justify-center text-gray-400">
+    <div class="w-full h-full flex items-center justify-center text-gray-400 fade-in">
       <div class="w-24 h-24 border-[0.5px] border-current opacity-20 rotate-45 absolute"></div>
       <div class="w-24 h-24 border-[0.5px] border-current opacity-20 -rotate-45 absolute"></div>
     </div>
