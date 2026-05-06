@@ -8,9 +8,9 @@ async function init() {
 
   try {
     // Try both paths to support simple python servers and standard dev servers like Vite
-    let response = await fetch('/config.md');
+    let response = await fetch('config.md');
     if (!response.ok) {
-      response = await fetch('/public/config.md');
+      response = await fetch('public/config.md');
     }
     
     if (!response.ok) {
@@ -115,6 +115,7 @@ async function init() {
     // Initialize Interactive Elements
     initInteractions();
     initShareModal();
+    initFullscreenDoubleTap();
 
   } catch (error) {
     console.error("Failed to load config:", error);
@@ -187,6 +188,31 @@ function initScrollReveal() {
       observer.observe(p);
     });
   }, 1000);
+}
+
+function initFullscreenDoubleTap() {
+  document.addEventListener('dblclick', (e) => {
+    // Prevent fullscreen if double tapping a button, link, or modal
+    if (e.target.closest('a, button, #qr-modal')) {
+      return;
+    }
+
+    const docEl = document.documentElement;
+
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen();
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen(); // Safari
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen(); // Safari
+      }
+    }
+  });
 }
 
 function initShareModal() {
@@ -297,9 +323,9 @@ async function resolveAvatar(githubUsername, name) {
   const extensions = ['jpg', 'png', 'jpeg'];
   const checkImage = async (ext) => {
     try {
-      const res = await fetch(`/profile.${ext}`, { method: 'HEAD' });
+      const res = await fetch(`profile.${ext}`, { method: 'HEAD' });
       if (res.ok && res.headers.get('content-type')?.startsWith('image/')) {
-        return `/profile.${ext}`;
+        return `profile.${ext}`;
       }
     } catch (e) {}
     return null;
