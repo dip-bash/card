@@ -7,10 +7,12 @@ async function init() {
   const bioContent = document.getElementById('bio-content');
 
   try {
-    // Try both paths to support simple python servers and standard dev servers like Vite
-    let response = await fetch('config.md');
+    // Try both paths relative to current directory (works on subpaths like /card/)
+    const baseUrl = new URL('./', window.location.href);
+    // let response = await fetch(new URL('config.md', baseUrl));
+    let response = await fetch('public/config.md');
     if (!response.ok) {
-      response = await fetch('public/config.md');
+      response = await fetch(new URL('public/config.md', baseUrl));
     }
     
     if (!response.ok) {
