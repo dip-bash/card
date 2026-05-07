@@ -9,7 +9,7 @@ async function init() {
   try {
     // Try both paths relative to current directory (works on subpaths like /card/)
     const baseUrl = new URL('./', window.location.href);
-    let response = await fetch(new URL('config.md', baseUrl));
+    let response = await fetch(new URL('public/config.md', baseUrl));
     if (!response.ok) {
       response = await fetch(new URL('public/config.md', baseUrl));
     }

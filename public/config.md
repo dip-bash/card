@@ -1,14 +1,14 @@
 ---
-name: |
+name:
   SAUMYADIP
   JANA
-details: "Product Designer & Frontend Architect based in London. focusing on high-end minimal interfaces."
+details: "Designing secure and reliable systems, backend infrastructure, and tools that simplify workflows."
 github_username: "dip-bash"
 socials:
   - icon: "Mail"
-    link: "mailto:hello@example.com"
+    link: "mailto:saumyadip.social@gmail.com"
   - icon: "Globe"
-    link: "https://example.com"
+    link: "https://dip-bash.github.io"
   - icon: "Github"
     link: "https://github.com/dip-bash"
   - icon: "FileText"
@@ -16,4 +16,4 @@ socials:
 ---
 
 # About Me
-I build digital products that feel like physical objects. My work is focused on the intersection of craft, technology, and minimalism.
+I create backend systems, automation tools, and cloud-ready applications with a focus on clean engineering and seamless functionality. I enjoy building technology that solves real problems while staying minimal, efficient, and dependable. Whether it’s infrastructure, networking, or developer tooling, my work is driven by the idea that good software should feel intuitive, stable, and almost invisible in everyday use.
