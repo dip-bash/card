@@ -12,7 +12,7 @@ socials:
   - icon: "Github"
     link: "https://github.com/dip-bash"
   - icon: "FileText"
-    link: "http://dip-bash.github.io/saumyadip_resume.pdf"
+    link: "https://dip-bash.github.io/saumyadip_resume.pdf"
 ---
 
 # About Me
